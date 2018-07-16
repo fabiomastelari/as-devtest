@@ -1,0 +1,21 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/Resources/doc/setup.md
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app: 
+           types:
+              business:
+                    properties:
+                        title: ~
+                        address: ~
+                        postalcode: ~
+                        city: ~
+                        categories: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Business
+                        listener:
+                            logger: true
+                        provider: ~
+                        finder: ~

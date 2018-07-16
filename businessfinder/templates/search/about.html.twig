@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Business Finder - About {% if business %}{{ business.Title }}{% endif %}{% endblock %}
+
+{% block body %}
+    <div class="row mt-4 mb-3">
+        <h2 class="col-md-12 text-center">Business Finder</h2>
+    </div>
+    {% if business %}
+    <div class="row">
+        <h5 class="col-sm-12 text-left font-weight-bold">{{ business.Title }}</h5>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-12 small">
+            in {% for category in business.Categories %}{{ category.Name }}{% if not loop.last %}, {% endif %}{% endfor %}
+        </div>
+    </div>
+    <div class="row mt-4">
+        <h5 class="col-sm-12 text-left font-weight-bold">About</h5>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-12 small">
+            {{ business.Description }}<br/>
+            Address: {{ business.Address }}, {{ business.City }} - {{ business.State }}, {{ business.PostalCode }}<br/>
+            Phone: {{ business.Telephone }}
+        </div>
+    </div>
+
+
+    {% else %}
+    <div class="row">
+        <div class="col">No business found</div>
+    </div>
+    {% endif %}
+{% endblock %}

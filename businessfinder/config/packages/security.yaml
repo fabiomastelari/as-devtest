@@ -1,0 +1,28 @@
+security:
+    encoders:
+        App\Entity\User: bcrypt
+    providers:
+        database_users:
+            entity: { class: App\Entity\User, property: username }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+
+            anonymous: true
+
+            form_login:
+                check_path: security_login
+                login_path: security_login
+                default_target_path: admin_area
+
+            logout:
+                path: security_logout
+                target: business_search
+
+    access_control:
+        # this is a catch-all for the admin area
+        # additional security lives in the controllers
+        - { path: '^/admin', roles: ROLE_ADMIN }
